@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Redux basic example</title>
+    <script src="node_modules/redux/dist/redux.js"></script>
+    <!--
+    <script>
+      window['_fs_debug'] = false;
+      window['_fs_host'] = 'fullstory.test:8043';
+      window['_fs_org'] = 'testdrive';
+      window['_fs_namespace'] = 'FS';
+      (function(m,n,e,t,l,o,g,y){
+          if (e in m) {if(m.console && m.console.log) { m.console.log('FullStory namespace conflict. Please set window["_fs_namespace"].');} return;}
+          g=m[e]=function(a,b,s){g.q?g.q.push([a,b,s]):g._api(a,b,s);};g.q=[];
+          o=n.createElement(t);o.async=1;o.src='https://'+_fs_host+'/s/fs.js';
+          y=n.getElementsByTagName(t)[0];y.parentNode.insertBefore(o,y);
+          g.identify=function(i,v,s){g(l,{uid:i},s);if(v)g(l,v,s)};g.setUserVars=function(v,s){g(l,v,s)};g.event=function(i,v,s){g('event',{n:i,p:v},s)};
+          g.shutdown=function(){g("rec",!1)};g.restart=function(){g("rec",!0)};
+          g.consent=function(a){g("consent",!arguments.length||a)};
+          g.identifyAccount=function(i,v){o='account';v=v||{};v.acctId=i;g(o,v)};
+          g.clearUserCookie=function(){};
+      })(window,document,window['_fs_namespace'],'script','user');
+      </script>
+      -->
+  </head>
+  <body>
+    <h3>Borrowed from <a href="https://github.com/reduxjs/redux/tree/master/examples/counter-vanilla">https://github.com/reduxjs/redux/tree/master/examples/counter-vanilla</a></h3>
+    <div>
+      <p>
+        Clicked: <span id="value">0</span> times
+        <button id="increment">+</button>
+        <button id="decrement">-</button>
+        <button id="incrementIfOdd">Increment if odd</button>
+        <button id="incrementAsync">Increment async</button>
+      </p>
+      <button id="boom">BOOM!</button>
+    </div>
+    <script>
+      function boom() {
+        var thisIsaReferenceError = e;
+      }
+
+      function counter(state, action) {
+        if (typeof state === 'undefined') {
+          return 0;
+        }
+
+        switch (action.type) {
+          case 'INCREMENT':
+            return state + 1;
+          case 'DECREMENT':
+            return state - 1;
+          case 'BOOM':
+            boom();
+          default:
+            return state;
+        }
+      }
+
+      // this from https://redux.js.org/advanced/middleware#the-final-approach
+      const crashReporter = store => next => action => {
+        try {
+          return next(action);
+        } catch (err) {
+          //console.error('Caught an exception!', err)
+          FS.event('Redux error', {
+            error: {
+              name: err.name,
+              message: err.message,
+              fileName: err.fileName,
+              lineNumber: err.lineNumber,
+              stack: err.stack,
+            },
+            state: store.getState(), //NOTE: strip out any sensitive fields first
+          });
+          //throw err;
+        }
+      };      
+
+      const store = Redux.createStore(counter, Redux.applyMiddleware(crashReporter));
+      const valueEl = document.getElementById('value');
+
+      function render() {
+        valueEl.innerHTML = store.getState().toString();
+      }
+
+      render();
+      store.subscribe(render);
+
+      document.getElementById('increment')
+        .addEventListener('click', function () {
+          store.dispatch({ type: 'INCREMENT' });
+        });
+
+      document.getElementById('decrement')
+        .addEventListener('click', function () {
+          store.dispatch({ type: 'DECREMENT' });
+        });
+
+      document.getElementById('incrementIfOdd')
+        .addEventListener('click', function () {
+          if (store.getState() % 2 !== 0) {
+            store.dispatch({ type: 'INCREMENT' });
+          }
+        });
+
+      document.getElementById('incrementAsync')
+        .addEventListener('click', function () {
+          setTimeout(function () {
+            store.dispatch({ type: 'INCREMENT' });
+          }, 1000);
+        });
+      
+      document.getElementById('boom')
+        .addEventListener('click', () => {
+          store.dispatch({ type: 'BOOM' });
+        });
+    </script>
+  </body>
+</html>
