@@ -60,7 +60,6 @@
         try {
           return next(action);
         } catch (err) {
-          //console.error('Caught an exception!', err)
           FS.event('Redux error', {
             error: {
               name: err.name,
@@ -71,11 +70,13 @@
             },
             state: store.getState(), //NOTE: strip out any sensitive fields first
           });
-          //throw err;
+          throw err;
         }
       };      
 
+      // apply middleware
       const store = Redux.createStore(counter, Redux.applyMiddleware(crashReporter));
+      
       const valueEl = document.getElementById('value');
 
       function render() {
