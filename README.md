@@ -1,5 +1,5 @@
 # Record Redux
-Using FullStory custom events to record redux state with middleware.
+Using FullStory [custom events](https://help.fullstory.com/develop-js/363565-fs-event-api-sending-custom-event-data-into-fullstory) to record redux state with middleware.
 
 This example is borrowed from https://github.com/reduxjs/redux/tree/master/examples/counter-vanilla.
 
