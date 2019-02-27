@@ -74,7 +74,7 @@
               lineNumber: err.lineNumber,
               stack: err.stack,
             },
-            state: store.getState(), //NOTE: strip out any sensitive fields first
+            counter: store.getState(), //NOTE: strip out any sensitive fields first
           });
           throw err;
         }
