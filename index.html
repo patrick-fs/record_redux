@@ -4,9 +4,10 @@
     <title>Redux basic example</title>
     <script src="node_modules/redux/dist/redux.js"></script>
     <script>
+        // FullStory snippet: https://help.fullstory.com/using/recording-snippet
         window['_fs_debug'] = false;
         window['_fs_host'] = 'fullstory.com';
-        window['_fs_org'] = 'YOUR ORG ID HERE';
+        window['_fs_org'] = 'YOUR ORG ID HERE'; // replace this with your OrgId
         window['_fs_namespace'] = 'FS';
         (function(m,n,e,t,l,o,g,y){
             if (e in m) {if(m.console && m.console.log) { m.console.log('FullStory namespace conflict. Please set window["_fs_namespace"].');} return;}
@@ -34,10 +35,13 @@
       <button id="boom">BOOM!</button>
     </div>
     <script>
+      
+      // example error
       function boom() {
         var thisIsaReferenceError = e;
       }
-
+      
+      // Redux reducer
       function counter(state, action) {
         if (typeof state === 'undefined') {
           return 0;
@@ -55,11 +59,13 @@
         }
       }
 
-      // this from https://redux.js.org/advanced/middleware#the-final-approach
+      // Middleware for capturing errors from https://redux.js.org/advanced/middleware#the-final-approach
       const crashReporter = store => next => action => {
         try {
           return next(action);
         } catch (err) {
+          // FullStory custom event
+          // https://help.fullstory.com/develop-js/363565-fs-event-api-sending-custom-event-data-into-fullstory
           FS.event('Redux error', {
             error: {
               name: err.name,
@@ -74,7 +80,7 @@
         }
       };      
 
-      // apply middleware
+      // apply middleware when creating store
       const store = Redux.createStore(counter, Redux.applyMiddleware(crashReporter));
       
       const valueEl = document.getElementById('value');
