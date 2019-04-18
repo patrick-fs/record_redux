@@ -29,13 +29,13 @@ function counter(state, action) {
 }
 ```
 
+This causes a reference error to be thrown (since `e` is not defined anywhere).
 ```JavaScript
 // example error
 function boom() {
   var thisIsaReferenceError = e;
 }
 ```
-This causes a reference error to be thrown (since `e` is not defined anywhere).
 
 A middleware function called `crashReporter()` is defined to catch errors thrown from reducers:
 ```JavaScript
