@@ -75,7 +75,7 @@ Once Redux error custom events are flowing into FullStory, they can be used to s
 ![image](https://user-images.githubusercontent.com/45576380/56391403-8c98fc80-61fc-11e9-8161-0fcf0efe98e2.png)
 
 
-## How to run this demo on your local environment
+## Run this demo on your local environment
 ```
 npm install
 npm run serve
