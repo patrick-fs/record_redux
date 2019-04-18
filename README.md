@@ -68,7 +68,7 @@ const store = Redux.createStore(counter, Redux.applyMiddleware(crashReporter));
 
 ### Searching in FullStory
 
-Once Redux error events are flowing into FullStory, they can be used to search for sessions:
+Once Redux error custom events are flowing into FullStory, they can be used to search for sessions:
 ![image](https://user-images.githubusercontent.com/45576380/56391161-d7664480-61fb-11e9-8250-c535a9c8bfb3.png)
 
 ### Viewing a session
