@@ -61,7 +61,7 @@ const crashReporter = store => next => action => {
         lineNumber: err.lineNumber,
         stack: err.stack,
       },
-      counter: store.getState(), //NOTE: strip out any sensitive fields first
+      counter: store.getState(), //NOTE: this could be a state object, strip out any sensitive fields first
     });
     throw err;
   }
