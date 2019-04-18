@@ -37,7 +37,7 @@ function boom() {
 }
 ```
 
-A middleware function called `crashReporter()` is defined to catch errors thrown from reducers:
+A middleware function called `crashReporter()` uses `FS.event()` to record errors thrown from reducers:
 ```JavaScript
 // middleware for capturing errors from https://redux.js.org/advanced/middleware#the-final-approach
 const crashReporter = store => next => action => {
