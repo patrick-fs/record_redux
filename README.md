@@ -18,8 +18,8 @@ This is the entire site:
 Clicking the "Boom" button will invoke this function:
 ```JavaScript
 // example error
-  function boom() {
-    var thisIsaReferenceError = e;
-  }
+function boom() {
+  var thisIsaReferenceError = e;
+}
 ```
 This causes a reference error to be thrown (since `e` is not defined anywhere).
