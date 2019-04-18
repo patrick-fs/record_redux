@@ -6,7 +6,7 @@ This example is borrowed from https://github.com/reduxjs/redux/tree/master/examp
 More information about Redux middleware: https://redux.js.org/advanced/middleware#the-final-approach.
 
 ## What this is demonstrating
-This is what the site looks like:
+This is what the site looks like (`index.html`):
 ![image](https://user-images.githubusercontent.com/45576380/56386678-771dd580-61f0-11e9-8695-0829c726a58d.png)
 Clicking the "BOOM!" button will invoke the `boom()` function via the Redux reducer:
 ```JavaScript
