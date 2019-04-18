@@ -3,7 +3,7 @@ You can use FullStory [custom events](https://help.fullstory.com/develop-js/3635
 
 This example is borrowed from https://github.com/reduxjs/redux/tree/master/examples/counter-vanilla.
 
-More information about Redux middleware: https://redux.js.org/advanced/middleware#the-final-approach.
+More information about Redux middleware: https://redux.js.org/advanced/middleware.
 
 ## What this is demonstrating
 This is what the site looks like (`index.html`):
