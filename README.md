@@ -69,7 +69,7 @@ const store = Redux.createStore(counter, Redux.applyMiddleware(crashReporter));
 ### Searching in FullStory
 
 Once Redux error events are flowing into FullStory, they can be used to search for sessions:
-![image](https://user-images.githubusercontent.com/45576380/56391041-8c4c3180-61fb-11e9-812e-5144d51eae7c.png)
+![image](https://user-images.githubusercontent.com/45576380/56391095-abe35a00-61fb-11e9-930c-d1527a3d8c39.png)
 
 ## How to run this demo on your local environment
 ```
