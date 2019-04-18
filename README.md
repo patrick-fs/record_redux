@@ -46,7 +46,7 @@ This causes a reference error to be thrown (since `e` is not defined anywhere).
 
 A middleware function is defined to catch errors thrown from reducers:
 ```JavaScript
-// Middleware for capturing errors from https://redux.js.org/advanced/middleware#the-final-approach
+// middleware for capturing errors from https://redux.js.org/advanced/middleware#the-final-approach
 const crashReporter = store => next => action => {
   try {
     return next(action);
@@ -69,6 +69,6 @@ const crashReporter = store => next => action => {
 ```
 
 ```JavaScript
-// apply middleware when creating store
+// apply middleware when creating the Redux store
 const store = Redux.createStore(counter, Redux.applyMiddleware(crashReporter));
 ```
