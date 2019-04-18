@@ -1,4 +1,4 @@
-# Record Redux
+# Record Redux Demo
 Using FullStory [custom events](https://help.fullstory.com/develop-js/363565-fs-event-api-sending-custom-event-data-into-fullstory) to record Redux state with middleware.
 
 This example is borrowed from https://github.com/reduxjs/redux/tree/master/examples/counter-vanilla.
@@ -66,7 +66,7 @@ const crashReporter = store => next => action => {
 const store = Redux.createStore(counter, Redux.applyMiddleware(crashReporter));
 ```
 
-## How to run
+## How to run this demo on your local environment
 ```
 npm install
 npm run serve
