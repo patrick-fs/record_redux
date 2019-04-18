@@ -37,7 +37,7 @@ function boom() {
 }
 ```
 
-A middleware function called `crashReporter()` uses `[FS.event()](https://help.fullstory.com/develop-js/363565-fs-event-api-sending-custom-event-data-into-fullstory)` to record errors thrown from reducers:
+A middleware function called `crashReporter()` uses `(FS.event())[https://help.fullstory.com/develop-js/363565-fs-event-api-sending-custom-event-data-into-fullstory]` to record errors thrown from reducers:
 ```JavaScript
 // middleware for capturing errors from https://redux.js.org/advanced/middleware#the-final-approach
 const crashReporter = store => next => action => {
