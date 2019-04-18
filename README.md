@@ -44,7 +44,7 @@ function boom() {
 ```
 This causes a reference error to be thrown (since `e` is not defined anywhere).
 
-A middleware function is defined to catch errors thrown from reducers:
+A middleware function called `crashReporter()` is defined to catch errors thrown from reducers:
 ```JavaScript
 // middleware for capturing errors from https://redux.js.org/advanced/middleware#the-final-approach
 const crashReporter = store => next => action => {
