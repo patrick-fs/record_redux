@@ -5,13 +5,6 @@ This example is borrowed from https://github.com/reduxjs/redux/tree/master/examp
 
 More information about Redux middleware: https://redux.js.org/advanced/middleware#the-final-approach.
 
-## How to run
-```
-npm install
-npm run serve
-```
-Please make sure that you replace `window['_fs_org'] = 'YOUR ORG ID HERE';` in the FullStory snippet with your actual Org Id. You can find your Org Id in the sample snippet provided on the FullStory settings page: https://help.fullstory.com/using/recording-snippet.
-
 ## What this is demonstrating
 This is what the site looks like:
 ![image](https://user-images.githubusercontent.com/45576380/56386678-771dd580-61f0-11e9-8695-0829c726a58d.png)
@@ -72,3 +65,11 @@ const crashReporter = store => next => action => {
 // apply middleware when creating the Redux store
 const store = Redux.createStore(counter, Redux.applyMiddleware(crashReporter));
 ```
+
+## How to run
+```
+npm install
+npm run serve
+```
+Please make sure that you replace `window['_fs_org'] = 'YOUR ORG ID HERE';` in the FullStory snippet with your actual Org Id. You can find your Org Id in the sample snippet provided on the FullStory settings page: https://help.fullstory.com/using/recording-snippet.
+
