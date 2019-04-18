@@ -43,3 +43,32 @@ function boom() {
 }
 ```
 This causes a reference error to be thrown (since `e` is not defined anywhere).
+
+A middleware function is defined to catch errors thrown from reducers:
+```JavaScript
+// Middleware for capturing errors from https://redux.js.org/advanced/middleware#the-final-approach
+const crashReporter = store => next => action => {
+  try {
+    return next(action);
+  } catch (err) {
+    // FullStory custom event
+    // https://help.fullstory.com/develop-js/363565-fs-event-api-sending-custom-event-data-into-fullstory
+    FS.event('Redux error', {
+      error: {
+        name: err.name,
+        message: err.message,
+        fileName: err.fileName,
+        lineNumber: err.lineNumber,
+        stack: err.stack,
+      },
+      counter: store.getState(), //NOTE: strip out any sensitive fields first
+    });
+    throw err;
+  }
+};
+```
+
+```JavaScript
+// apply middleware when creating store
+const store = Redux.createStore(counter, Redux.applyMiddleware(crashReporter));
+```
