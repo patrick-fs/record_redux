@@ -15,7 +15,27 @@ Please make sure that you replace `window['_fs_org'] = 'YOUR ORG ID HERE';` in t
 ## What this is demonstrating
 This is the entire site:
 ![image](https://user-images.githubusercontent.com/45576380/56386678-771dd580-61f0-11e9-8695-0829c726a58d.png)
-Clicking the "Boom" button will invoke this function:
+Clicking the "Boom" button will invoke this function via the Redux reducer:
+```JavaScript
+// Redux reducer
+function counter(state, action) {
+  if (typeof state === 'undefined') {
+    return 0;
+  }
+
+  switch (action.type) {
+    case 'INCREMENT':
+      return state + 1;
+    case 'DECREMENT':
+      return state - 1;
+    case 'BOOM':
+      boom();
+    default:
+      return state;
+  }
+}
+```
+
 ```JavaScript
 // example error
 function boom() {
